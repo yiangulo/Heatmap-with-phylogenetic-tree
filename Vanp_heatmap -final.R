@@ -1,22 +1,28 @@
-library(ggplot2)
-library(reshape2)
-library(RColorBrewer) # for customise colors
-library(ggtree) # for ploting phylogenetic tree and other things
-library(gplots) # for plotting heatmap with "heatmap.2" function 
-library(ape)
-library(gridGraphics)
-library(gridExtra)
+require(ggplot2)
+require(reshape2)
+require(RColorBrewer) # for customise colors
+require(ggtree) # for ploting phylogenetic tree and other things
+require(gplots) # for plotting heatmap with "heatmap.2" function 
+require(ape)
+require(gridGraphics)
+require(gridExtra)
 
 
 
-#set working directory
-setwd("C:/Users/Angulo/Desktop/trial")
-getwd()
+#set working directory to the folder containing current working R file
+# install.packages("rstudioapi") # run this if it's your first time using it to install
+require(rstudioapi) # load it
+# the following line is for getting the path of your current open file
+current_path <- getActiveDocumentContext()$path 
+# The next line set the working directory to the relevant one:
+setwd(dirname(current_path ))
+# you can make sure you are in the right directory
+print( getwd() )
 
 
 
 #input the BI tree, which is in nexus format
-t1 <- read.beast("Vanp.BI.nex.con.tre")
+t1 <- read.beast("./Data/Vanp.BI.nex.con.tre")
 get.fields(t1)
 # converting the BI tree into dataframe
 a1 <- fortify(t1) %>% dplyr::as_data_frame()
@@ -45,7 +51,7 @@ t1_plot
 
 
 #load abundance data
-d1 <- read.csv("Vanp_count_table_heatmap.csv", header = T, sep=",", row.names = 1, check.names = F)
+d1 <- read.csv("./Data/Vanp_count_table_heatmap.csv", header = T, sep=",", row.names = 1, check.names = F)
 
 
 #converting numeric to factor in the data
