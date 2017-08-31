@@ -1,10 +1,1 @@
-#alalalalala
-a
-aa
-a
-a
-a
-a
-##aa
-###aa
-####aa
+# sample R script for drawing heatmap with phylogenetic tree using ggtree R package
